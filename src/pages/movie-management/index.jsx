@@ -25,6 +25,7 @@ function MovieManagement() {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
+  
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -61,7 +62,7 @@ function MovieManagement() {
 
   async function fetchMovies() {
     const response = await axios.get(
-      "https://662b9b40de35f91de158d81b.mockapi.io/Movie"
+      "https://6627a8d5b625bf088c092ec8.mockapi.io/Movie"
     );
 
     console.log(response.data);
@@ -86,7 +87,7 @@ function MovieManagement() {
     const url = await uploadFile(values.poster_path.file.originFileObj);
     values.poster_path = url;
 
-    axios.post("https://662b9b40de35f91de158d81b.mockapi.io/Movie", values);
+    axios.post("https://6627a8d5b625bf088c092ec8.mockapi.io/Movie", values);
 
     setDataSource([...dataSource, values]);
 

@@ -8,11 +8,17 @@ import "swiper/css/pagination";
 import "./index.scss";
 
 // import required modules
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "swiper/css/navigation";
 
-export default function Carousel({ numberOfSlide, category }) {
+export default function Carousel({
+  numberOfSlide,
+  category,
+  isUseNavigation = false,
+  title,
+}) {
   const [movies, setMovies] = useState([]);
   const fetchMovies = async () => {
     const response = await axios.get(
@@ -23,16 +29,18 @@ export default function Carousel({ numberOfSlide, category }) {
   };
   useEffect(() => fetchMovies(), []);
   return (
-    <div className="carousel">
+    <div className={`carousel ${numberOfSlide > 1 ? "multi-item": ""}`}>
+      {title && <h1>{title}</h1>}
       <Swiper
-        spaceBetween={30}
+        navigation={isUseNavigation}
+        spaceBetween={10}
         slidesPerView={numberOfSlide}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
         pagination={true}
-        modules={[Autoplay, Pagination]}
+        modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         {movies

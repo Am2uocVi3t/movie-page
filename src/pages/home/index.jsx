@@ -4,9 +4,9 @@ import Header from "../../components/header";
 function HomePage() {
   return <div>
     <Header/>
-    <Carousel numberOfSlide={3} category={"Trending"}/>
-    <Carousel numberOfSlide={5} category={"Action"}/>
-    <Carousel numberOfSlide={3} category={"Horror"}/>
+    <Carousel numberOfSlide={1} category={"Action"} isUseNavigation={true}/>
+    <Carousel numberOfSlide={6} category={"Trending"} title="Trending"/> 
+    <Carousel numberOfSlide={6} category={"Horror"} title="Horror"/>
   </div>;
 }
 
